@@ -1,0 +1,168 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a server implementation of the microservice.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Sample MicroService API built with Go + Gin
+  version: "1.0"
+paths:
+  /auth/forgot-password:
+    post:
+      consumes:
+      - application/json
+      description: This disables an already registered user password. It generates
+        a token and send to the email of the account
+      produces:
+      - application/json
+      responses: {}
+      summary: This resets a user password
+      tags:
+      - Authentication
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: This Authenticates an already registered user. It validates the
+        email, password and generates a JWT token along side
+      produces:
+      - application/json
+      responses: {}
+      summary: This Authenticates a user
+      tags:
+      - Authentication
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: This method handles a User creation payload and creates a not already
+        registered user. It validates the email, password and generates a JWT token
+        along side
+      produces:
+      - application/json
+      responses: {}
+      summary: This creates a new user
+      tags:
+      - Authentication
+  /auth/reset-password:
+    post:
+      consumes:
+      - application/json
+      description: This updates an already registered user password. It generates
+        a token and logs them into the account afresh
+      produces:
+      - application/json
+      responses: {}
+      summary: This changes a user password
+      tags:
+      - Authentication
+  /books/all:
+    get:
+      consumes:
+      - application/json
+      description: This returns all books. It validates that the user is authenticated
+        and return a list of books
+      produces:
+      - application/json
+      responses: {}
+      summary: This returns all books
+      tags:
+      - Books
+  /books/create:
+    post:
+      consumes:
+      - application/json
+      description: This creates an book and associates it with the authenticated user.
+        It validates the payload and stores the book in the database
+      produces:
+      - application/json
+      responses: {}
+      summary: This creates a book
+      tags:
+      - Books
+  /books/one/:id:
+    get:
+      consumes:
+      - application/json
+      description: This returns a book that the id is specified in the query. It validates
+        that the user is authenticated and return the corresponding id book
+      produces:
+      - application/json
+      responses: {}
+      summary: This returns a book
+      tags:
+      - Books
+  /books/remove/:id:
+    delete:
+      consumes:
+      - application/json
+      description: This deletes a book details. It validates the id and deletes the
+        book from the database
+      produces:
+      - application/json
+      responses: {}
+      summary: This deletes a book
+      tags:
+      - Books
+  /books/update:
+    put:
+      consumes:
+      - application/json
+      description: This updates a book details. It validates the payload and stores
+        the book in the database
+      produces:
+      - application/json
+      responses: {}
+      summary: This updates a book
+      tags:
+      - Books
+  /health:
+    get:
+      consumes:
+      - '*/*'
+      description: This ping route enables us verify the health status and availability
+        of the server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Shows the health status of server.
+      tags:
+      - Health Check
+  /users/profile:
+    get:
+      consumes:
+      - application/json
+      description: This returns an already existing user. It validates the authenticated
+        user matches the token and returns their details
+      produces:
+      - application/json
+      responses: {}
+      summary: This returns a user profile
+      tags:
+      - Users
+  /users/update:
+    put:
+      consumes:
+      - application/json
+      description: This updates an already existing user. It validates the details
+        of the user matches the authenticated user and then updates the user
+      produces:
+      - application/json
+      responses: {}
+      summary: This updates a user
+      tags:
+      - Users
+schemes:
+- http
+swagger: "2.0"
